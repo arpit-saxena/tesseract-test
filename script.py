@@ -13,15 +13,9 @@ def process_PDF_file (pdf_file):
 
     os.system("./do", pdf_file)
     
-    initial_ocr = ""
-    pages = convert_from_path(pdf_file, 400)
-    for page in pages:
-        initial_ocr += pytesseract.image_to_string(page)
+    ocr_text = open(pdf_file + ".ocr", "r")
 
-    stop_words = set(stopwords.words('english'))
-
-    pattern = re.compile('[\W_]+')
-    pattern.sub('', string.printable)
-
-    initial_ocr_tokens = 
-    filtered_ocr = [w for w in word_tokens if not w in stop_words] 
+import glob
+def process_subdirectories():
+    for filename in glob.iglob('./**/*.pdf', recursive=True):
+        process_PDF_file(filename)
